@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="module">
+        // Importa las funciones que necesitas de los SDKs que necesitas
+        import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+        import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
+      
+        // Configuración de tu aplicación web de Firebase
+        const firebaseConfig = {
+          apiKey: "AIzaSyBiSUrnLPK2lzo-Jex9riuPQ37NLheiarI",
+          authDomain: "turnos415.firebaseapp.com",
+          databaseURL: "https://turnos415-default-rtdb.firebaseio.com",
+          projectId: "turnos415",
+          storageBucket: "turnos415.appspot.com",
+          messagingSenderId: "982656058503",
+          appId: "1:982656058503:web:383222e2254f13d0786422",
+          measurementId: "G-BQJ4MQ7EKD"
+        };
+      
+        // Inicializa Firebase solo si no se ha inicializado previamente
+        const app = !getApps().length ? initializeApp(firebaseConfig) : getApps()[0];
+      
+        const database = getDatabase(app);
+      // Función para ingresar un turno
+  function ingresarTurno(usuarioId, fecha, hora, estado) {
+    const turnoId = 'turno' + Date.now(); // Genera un ID único para el turno
+    set(ref(database, 'turnos/' + turnoId), {
+      usuarioId: usuarioId,
+      fecha: fecha,
+      hora: hora,
+      estado: estado
+    });
+  }
+
+  // Ejemplo de cómo usar la función
+  ingresarTurno('usuario123', '2024-04-16', '16:00', 'pendiente');
+        // Resto del código..
+      </script> 
+</head>
+<body>
+    <div>pp</div>
+</body>
+</html>
